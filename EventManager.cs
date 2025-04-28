@@ -1,40 +1,20 @@
+using System;
+
 /// <summary>
-/// Crosspoint for events
+/// Crosspoint for events.
 /// </summary>
-
-public class EventManager
+public static class EventManager
 {
-    public delegate void GameAction();
-    public static event GameAction OnGameOver;
-    public static event GameAction OnTogglePause;
-    public static event GameAction OnUpdateAbility;
+    //public static event Action<GameObject> OnIncreaseStack;
+    public static event Action OnTimerEnd;
+    public static event Action OnVictory;
 
-    public delegate void ScoreUpdateAction(int score);
-    public static event ScoreUpdateAction OnScoreUpdate;
-    public static event ScoreUpdateAction OnCoinsScoreUpdate;
+    public static void TimerEnd() => OnTimerEnd?.Invoke();
+    public static void Victory() => OnVictory?.Invoke();
 
-    public static void GameOver()
-    {
-        OnGameOver();
-    }
+    //public static void IncreaseStack(GameObject cube)
+    //{
+    //    OnIncreaseStack?.Invoke(cube);
+    //}
 
-    public static void TogglePause()
-    {
-        OnTogglePause();
-    }
-
-    public static void UpdateAbility()
-    {
-        OnUpdateAbility();
-    }
-
-    public static void ScoreUpdate(int score)
-    {
-        OnScoreUpdate(score);
-    }
-
-    public static void CoinsScoreUpdate(int score)
-    {
-        OnCoinsScoreUpdate(score);
-    }
 }
